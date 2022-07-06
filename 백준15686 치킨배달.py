@@ -1,32 +1,9 @@
 import sys
-input = sys.stdin.readline
-n, m = map(int, input().split())
-Map = [list(map(int,input().split())) for _ in range(n)]
-
-# 치킨집, 집의 위치 저장
-chicken = []
-house = []
-n_chicken = 0
-n_house = 0
-for i in range(n):
-    for j in range(n):
-        if Map[i][j] == 1:
-            house.append((i, j))
-            n_house+=1
-        elif Map[i][j] == 2:
-            chicken.append((i, j))
-            n_chicken+=1
-
 
 # [dist 함수] 두 위치 간의 거리 반환
 def dist(a, b):
     result = abs(a[0] - b[0]) + abs(a[1] - b[1])
     return result
-
-# dfs(back_tracking && dp)
-memo = [[0]*n_chicken for i in range(n_house)] # 치킨거리 저장(memoization)
-min_sol = 987654321                                   #global
-visited = [0]*n_chicken
 
 def dfs(h, chicken_dist):
     global min_sol
@@ -48,6 +25,29 @@ def dfs(h, chicken_dist):
         dfs(h+1, chicken_dist)
         visited[c] -= 1
         chicken_dist -= memo[h][c]
+
+input = sys.stdin.readline
+n, m = map(int, input().split())
+Map = [list(map(int,input().split())) for _ in range(n)]
+
+# 치킨집, 집의 위치 저장
+chicken = []
+house = []
+n_chicken = 0
+n_house = 0
+for i in range(n):
+    for j in range(n):
+        if Map[i][j] == 1:
+            house.append((i, j))
+            n_house+=1
+        elif Map[i][j] == 2:
+            chicken.append((i, j))
+            n_chicken+=1
+
+# dfs(back_tracking && dp)
+memo = [[0]*n_chicken for i in range(n_house)] # 치킨거리 저장(memoization)
+min_sol = 987654321                                   #global
+visited = [0]*n_chicken
 
 dfs(0, 0)
 print(min_sol)
