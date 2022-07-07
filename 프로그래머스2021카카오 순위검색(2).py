@@ -6,14 +6,14 @@ from collections import defaultdict
 
 def solution(infos, queries):
     answer = []
-    info_dict = defaultdict(list) # info_dict의 default value는 리스트
+    info_dict = defaultdict(list)        ## checkpoint1: <defaultdict> info_dict의 default value는 리스트
     for info in infos:
         info = info.split()
         info_key = info[:-1]
         info_val = int(info[-1])
         for i in range(5):
-            for c in combi(info_key, i):
-                tmp_key = ''.join(c)
+            for c in combi(info_key, i): ## checkpoint2: <combinations> 조합을 튜플 형식으로
+                tmp_key = ''.join(c)     ## checkpoint3: <join 함수> 리스트or튜플을 ~으로 연결하여 하나의 문자열로 만듦
                 info_dict[tmp_key].append(info_val)
     for key in info_dict.keys():
         info_dict[key].sort()
@@ -24,7 +24,7 @@ def solution(infos, queries):
         query = query[:-1]
 
         for i in range(3):
-            query.remove('and')
+            query.remove('and')          ## checkpoint4: <remove 함수> 리스트의 특정 원소 제거, 단 제일 먼저 나오는 값부터 제거
         while '-' in query:
             query.remove('-')
 
@@ -33,8 +33,8 @@ def solution(infos, queries):
             scores = info_dict[tmp_q] # list
             # query_score보다 같거나 큰 score의 인덱스 구하기
             if len(scores) > 0:
-                front, end = 0, len(scores) # 파이썬스러운 문법임!
-                while front < end:
+                front, end = 0, len(scores) # (파이썬스러운 문법임!)
+                while front < end:       ## checkpoint5: <lower bount 찾기> 이진탐색과 동일한 로직!
                     mid = (front+end) // 2
                     if scores[mid] >= query_score:
                         end = mid
