@@ -1,3 +1,5 @@
+# 첫번째 시도: 정확성 테스트 통과 O / 효율성 테스트 통과 X
+
 def solution(info, query):
     answer = []
     info2 = []
