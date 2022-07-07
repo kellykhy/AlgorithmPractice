@@ -1,5 +1,6 @@
 # 프로그래머스2021카카오 순위검색( 다른 사람 풀이과정 )
 # https://whwl.tistory.com/193
+# 정확성 테스트 통과 O / 효율성 테스트 통과 O
 
 from itertools import combinations as combi
 from collections import defaultdict
