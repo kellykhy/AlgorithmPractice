@@ -1,4 +1,4 @@
-# LRU(Least Recently Used) 구현
+# LRU(Least Recently Used) 구현  https://gomguard.tistory.com/115
 cities = ["Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"]
 cache_size = 2
 cache = [0] # cache[0]: 실행시간 저장
