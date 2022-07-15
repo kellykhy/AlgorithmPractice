@@ -35,7 +35,7 @@ def solution(infos, queries):
             # query_score보다 같거나 큰 score의 인덱스 구하기
             if len(scores) > 0:
                 front, end = 0, len(scores) # (파이썬스러운 문법임!)
-                while front < end:       ## checkpoint5: <lower bount 찾기> 이진탐색과 동일한 로직!
+                while front < end:       ## checkpoint5: <lower bound 찾기> 이진탐색과 동일한 로직!
                     mid = (front+end) // 2
                     if scores[mid] >= query_score:
                         end = mid
