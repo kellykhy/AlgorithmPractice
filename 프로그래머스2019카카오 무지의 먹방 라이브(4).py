@@ -24,7 +24,7 @@ def solution(food_times, k):
         length -= 1
 
     result = sorted(food_heap, key = lambda x : x[1])
-    answer = food_heap[(k-t) % length][1]
+    answer = result[(k-t) % length][1]
 
     return answer
 
