@@ -11,14 +11,14 @@ def solution(board, moves):
         for i in range(len(board)):
             if row[i]:
                 stacks[i].insert(0, row[i])
-    print(stacks)
-    top = 0
     for move in moves:
-        if len(stacks[move-1]): 
-            basket.append(stacks[move-1].pop())
-            top = basket[-1]
-            
-
+        if len(stacks[move-1]):
+            if len(basket) and (basket[-1] == stacks[move-1][-1]):
+                answer += 2
+                basket.pop()
+                stacks[move-1].pop()
+            else:
+                basket.append(stacks[move-1].pop())
     return answer
 
-solution(board, moves)
+print(solution(board, moves))
