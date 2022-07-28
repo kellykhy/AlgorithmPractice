@@ -30,7 +30,7 @@ class Stack():
 def function_call(ftn_name, self):
     getattr(Stack, ftn_name)(self)
 
-stack1 = Stack()
+stack = Stack()
 n = int(input())
 orders = []
 for i in range(n):
@@ -38,6 +38,6 @@ for i in range(n):
 
 for order in orders:
     if len(order) == 1:
-        function_call(order[0], stack1)
+        function_call(order[0], stack)
     else:
-        stack1.push(int(order[1]))
+        stack.push(int(order[1]))
