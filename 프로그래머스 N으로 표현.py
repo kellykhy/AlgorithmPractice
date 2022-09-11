@@ -1,3 +1,5 @@
+# 프로그래머스 N으로 표현(DP 알고리즘)
+## 시도1
 from collections import defaultdict
 
 def solution(N, number):
