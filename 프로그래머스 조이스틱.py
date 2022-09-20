@@ -24,9 +24,7 @@ def solution(name):
             if (ord(l)<78): up_down+=(ord(l)-65)
             else: up_down+=(90-ord(l)+1)
     end = pre
-    case1 = end
-    case2 = len(name)-start
-    answer = min(case1, case2, min_case3, min_case4) + up_down
+    answer = min(end, len(name)-start, min_case3, min_case4) + up_down
 
     return answer
 
