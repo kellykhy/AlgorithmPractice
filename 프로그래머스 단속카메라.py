@@ -13,6 +13,8 @@ def solution(routes):
                 routes[i+1] = [routes[i+1][0], routes[i][1]]
     return answer
 
+    
+
 # 테스트
 print(solution([[-20,-15], [-14,-5], [-18,-13], [-5,-3]])) # 2
 print(solution([[-10,-10], [-5, -5]]))
