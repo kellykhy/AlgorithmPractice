@@ -17,7 +17,7 @@ for (idx,n) in A:
     i, j = A[0][0], A[0][0]
     for j in range(len(index)-1):
         if index[j]>idx:
-            
+            print() # 
         if (index[j]<idx and index[j+1]>idx):
             i = index[j]
             j = index[j+1]-1
