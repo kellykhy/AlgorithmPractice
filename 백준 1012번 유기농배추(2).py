@@ -1,4 +1,4 @@
-# 백준 1012번 유기농배추(2) 
+# 백준 1012번 유기농배추(2) (메모리: 33224KB, 시간: 80ms)
 ## https://hei-jayden.tistory.com/100 참고하면서 dfs 개념 다시 익히려고 노력함.
 
 import sys
