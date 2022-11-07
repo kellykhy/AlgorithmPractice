@@ -1,11 +1,10 @@
 # 백준 1520번 내리막길(시간초과)
 
 import sys
-sys.setrecursionlimit(10**9)
 input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
 
 m, n = map(int, input().split())
-
 Map = []
 for r in range(m):
     Map.append(list(map(int, input().split())))
