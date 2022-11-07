@@ -5,8 +5,6 @@ import sys
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-t = int(input())
-
 def dfs(col,row):
     graph[row][col] = 0
     m_change = [1, 0, -1, 0]
@@ -18,6 +16,8 @@ def dfs(col,row):
             if (graph[new_r][new_c]==1):
                 graph[new_r][new_c]-=1
                 dfs(new_c, new_r)
+
+t = int(input())
 count_list = []
 for i in range(t):
     count = 0

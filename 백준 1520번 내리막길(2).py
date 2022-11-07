@@ -4,11 +4,6 @@ import sys
 input = sys.stdin.readline
 sys.setrecursionlimit(10**6)
 
-m, n = map(int, input().split())
-Map = [list(map(int, input().split())) for _ in range(m)]
-
-dp = [[-1 for _ in range(n)] for _ in range(m)]
-
 def dfs(r,c):
     if r == m-1 and c == n-1:
         return 1
@@ -19,5 +14,8 @@ def dfs(r,c):
                 dp[r][c] += dfs(r+dr, c+dc)
     #print("dp[", r, "][", c, "] =", dp[r][c])
     return dp[r][c]
-
+    
+m, n = map(int, input().split())
+Map = [list(map(int, input().split())) for _ in range(m)]
+dp = [[-1 for _ in range(n)] for _ in range(m)]
 print(dfs(0,0))
