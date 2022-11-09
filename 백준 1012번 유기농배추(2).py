@@ -6,29 +6,30 @@ sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
 def dfs(col,row):
-    graph[row][col] = 0
-    m_change = [1, 0, -1, 0]
+    Map[row][col] -= 1
+    m_change = [1, 0, -1, 0] #동(>)남(V)서(<)북(ㅅ) 순
     n_change = [0, 1, 0, -1]
     for i in range(4):
-        new_c = col+m_change[i]
-        new_r = row+n_change[i]
-        if (0<=new_c<m and 0<=new_r<n):
-            if (graph[new_r][new_c]==1):
-                graph[new_r][new_c]-=1
-                dfs(new_c, new_r)
+        nc = col+m_change[i]
+        nr = row+n_change[i]
+        if (0 <= nc < m and 0 <= nr < n): #조건1) Map의 범위 내에 존재
+            if (Map[nr][nc] == 1):        #조건2) 배추가 있는지
+                Map[nr][nc] -= 1 # 배추가 없는 지점으로 바꿔줌.
+                dfs(nc, nr)
 
 t = int(input())
 count_list = []
 for i in range(t):
     count = 0
     m,n,k = map(int, input().split())
-    graph = [[0]*m for _ in range(n)]
+    Map = [[0]*m for _ in range(n)]
     for i in range(k):
         mi, ni = map(int, input().split())
-        graph[ni][mi] = 1
+        Map[ni][mi] = 1
+
     for col in range(m):
         for row in range(n):
-            if graph[row][col] == 1:
+            if Map[row][col] == 1:
                 dfs(col,row)
                 count += 1
     count_list.append(count)
