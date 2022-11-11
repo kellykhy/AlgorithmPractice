@@ -1,8 +1,6 @@
 # 백준 1520번 내리막길
 
 import sys
-import time
-start = time.time()  # 시작 시간 저장
 
 input = sys.stdin.readline
 sys.setrecursionlimit(10**6)
@@ -19,7 +17,5 @@ def dfs(r,c):
     
 m, n = map(int, input().split())
 Map = [list(map(int, input().split())) for _ in range(m)]
-dp = [[-1 for _ in range(n)] for _ in range(m)] # -1: 방문x/ 0: 방문o & 목표지점까지 갈 수 x/ etc: 방문o & 목표지점까지 가는 방법의 수
+dp = [[-1 for _ in range(n)] for _ in range(m)] # -1: 방문x/ 0: 방문o & 목표지점까지 갈 수 x/ 기타: 방문o & 목표지점까지 가는 방법의 수
 print(dfs(0,0))
-
-print("time :", time.time() - start)  # 현재시각 - 시작시간 = 실행 시간
