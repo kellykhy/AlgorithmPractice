@@ -41,6 +41,7 @@ for i in range(N+1):
         edge.append([graph[i][j], i, j])
 edge.sort()
 for e in edge:
+    print("rank: ", p)
     if is_diff_group(e[1], e[2]):
         result += e[0]
 print(result)
