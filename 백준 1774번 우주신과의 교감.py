@@ -2,6 +2,7 @@
 import sys
 import math
 input = sys.stdin.readline
+sys.setrecursionlimit(10**5)
 
 def dis(v1, v2):
     return math.sqrt((V[v1-1][0] - V[v2-1][0])**2 + (V[v1-1][1] - V[v2-1][1])**2)
@@ -19,34 +20,35 @@ graph = list(set(graph))
 graph.sort()
 
 # 크루스칼 알고리즘
-p = list(range(N+1))
+p = [-1] * (N+1)
 total_dis = 0
 
 def find(v):
-    if (v != p[v]):
-        p[v] = find(p[v])
+    print("v=", v)
+    if (p[v] < 0): return v
+    p[v] = find(p[v])
     return p[v]
 
-def is_diff_group(v1, v2):
-    p1 = find(v1)
-    p2 = find(v2)
-    if (p1 == p2): return 0
-    return 1
-
-def union(v1, v2):
-    p1 = find(v1)
-    p2 = find(v2)
-    if (p1 < p2): p[p2] = p1
-    else: p[p1] = p2
+def union(p1, p2):
+    if (p[p1] == p[p2]): 
+        p[p1]-=1
+    if (p[p1] < p[p2]): 
+        p[p2] = p1
+    else: 
+        p[p1] = p2
 
 for _ in range(M):
     a, b = map(int, input().split())
     if (a > b): a,b = b,a
-    union(a, b)
+    p1 = find(a)
+    p2 = find(b)
+    union(p1, p2)
 
 for i in range(len(graph)):
-    if (is_diff_group(graph[i][1], graph[i][2])):
+    p1 = find(graph[i][1])
+    p2 = find(graph[i][2])
+    if (p1 != p2):
         total_dis += graph[i][0]
-        union(graph[i][1], graph[i][2])
+        union(p1, p2)
 
 print("{:.2f}".format(total_dis))
