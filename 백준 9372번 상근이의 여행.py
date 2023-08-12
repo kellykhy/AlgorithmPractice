@@ -1,7 +1,6 @@
 #백준 9372번 상근이의 여행
 
 import sys
-sys.setrecursionlimit(10 ** 6)
 input = sys.stdin.readline
 
 T = int(input())
