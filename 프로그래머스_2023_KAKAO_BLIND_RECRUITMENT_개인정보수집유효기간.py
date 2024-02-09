@@ -2,14 +2,14 @@
 
 def solution(today, terms, privacies):
     answer = []
-    # today
+
     today = list(map(int, today.split('.')))
-    # terms->terms_dict
+
     terms_dict = {}
     for term in terms:
-        tmp = term.split()
-        terms_dict[tmp[0]] = int(tmp[1]) * 28
-    # privacies
+        type, period = term.split()
+        terms_dict[type] = int(period) * 28
+
     for i in range(len(privacies)):
         start_date, type = privacies[i].split(' ')
         start_date_lst = list(map(int, start_date.split('.')))
@@ -19,6 +19,7 @@ def solution(today, terms, privacies):
             answer.append(i+1)
     return answer
 
+###################### TEST ###########################
 today_ex = "2020.01.01"	
 terms_ex = ["Z 3", "D 5"]	
 privacies_ex = ["2019.01.01 D", "2019.11.15 Z", "2019.08.02 D", "2019.07.01 D", "2018.12.28 Z"]
