@@ -1,4 +1,4 @@
-# 백준 11724번 연결 요소의 개수
+# 백준 11724번 연결 요소의 개수(BFS)
 
 # 무방향 그래프 (N:정점의 개수, M:간선의 개수)
 
@@ -14,6 +14,7 @@ for i in range(M):
     graph[a].append(b)
     graph[b].append(a)
 
+# BFS 사용
 result = 0 #연결 요소의 개수
 visited = [0] * (N+1)
 queue = deque()
