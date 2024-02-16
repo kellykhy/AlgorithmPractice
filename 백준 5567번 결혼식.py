@@ -14,7 +14,7 @@ for i in range(m):
     graph[b].append(a)
     
     
-result = 0 # 초대하는 동기의 수 (연결 그래프의 정점의 수 - 1)
+result = 0 # 초대하는 동기의 수
 visited = [0] * (n+1)
 
 def bfs(v):
