@@ -31,7 +31,7 @@ def dfs(x,y):
                 if (graph[new_x][new_y] == 'O'):
                     return new_d
     return 0
-            
+
 #input
 N, M = map(int, sys.stdin.readline().split())
 start = tuple() # 시작점
