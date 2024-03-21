@@ -6,7 +6,7 @@ for _ in range(T):
     case.append(int(input()))
 n = max(case)
 dp = [0] * (n+1)
-n = max(case)
+
 for i in range(0, n+1):
     if (i < 2):
         dp[i] = 1
