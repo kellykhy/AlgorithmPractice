@@ -11,7 +11,6 @@ print(' '.join(list(map(str, sorted(ary)))))
 '''
 
 # 투 포인터 사용
-
 n,m = map(int, input().split())
 ary1 = list(map(int, input().split()))
 ary2 = list(map(int, input().split()))
