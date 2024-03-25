@@ -24,7 +24,7 @@ for i in range(1, max+1):
         dp.append([1,1,1])
     else:
         dp.append([dp_sum[-1]-dp[-1][0], dp_sum[-2]-dp[-2][1], dp_sum[-3]-dp[-3][2]])
-        dp.popleft()
+        dp.popleft() # 시간초과, 메모리초과 이유로 pop(0)에서 수정함.
     dp_sum.append(sum(dp[-1]))
         
 for i in case:
