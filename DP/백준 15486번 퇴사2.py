@@ -9,12 +9,10 @@ for _ in range(N):
     
 dp = [0] * (N+1)
 max_val = 0
-max_list = [0] * (N+1)
 for i in range(1, N+1):
     if (info[-i][0] > i):
-        dp[i] = 0
+        dp[i] = max_val
     else:
-        dp[i] = max_list[i-info[-i][0]] + info[-i][1]
-        max_val = max(dp[i], max_val)
-    max_list[i] = max_val
-print(max(dp))
+        dp[i] = max(dp[i-info[-i][0]] + info[-i][1], max_val)
+    max_val = dp[i]
+print(max_val)
