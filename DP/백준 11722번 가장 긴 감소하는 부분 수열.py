@@ -9,12 +9,10 @@ dp = [0] * (N+1)
 for i in range(1, N+1):
     max_val = 0
     max_idx = 0
-    k = i-1
-    while (k > 0):
+    for k in range(i-1,0,-1):
         if (A[-i] > A[-k] and dp[k] > max_val):
             max_val = dp[k]
             max_idx = k
-        k -= 1
     dp[i] = dp[max_idx] + 1
 
 print(max(dp))
