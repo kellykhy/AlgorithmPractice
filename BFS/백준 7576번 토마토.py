@@ -2,11 +2,10 @@
 
 import sys
 from collections import deque
-
 input = sys.stdin.readline
+
 M, N = map(int, input().split()) # N행, M열
 tomatoes = [list(map(int, input().split())) for _ in range(N)]
-
 yet = 0
 
 

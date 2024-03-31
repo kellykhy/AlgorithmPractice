@@ -6,8 +6,7 @@ def bfs(x,y):
     dx = [0, -1, 0, 1]
     dy = [1, 0, -1, 0] 
 
-    d = 1
-    vis[x][y] = d
+    vis[x][y] = 1
     queue = [(x, y)]
     
     while queue:
