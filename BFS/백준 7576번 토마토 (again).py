@@ -41,6 +41,4 @@ for i in range(n):
             target += 1
         elif (row[j] == 1):
             queue.append((i,j))
-# 1 : 익은 토마토, 0 : 익지 않은 토마토, -1 : 토마토가 들어있지 않은 칸
-
 print(bfs())

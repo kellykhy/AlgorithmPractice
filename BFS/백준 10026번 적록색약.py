@@ -22,8 +22,7 @@ def bfs(i,j):
                     continue
                 queue.append((new_x, new_y))
                 visited[new_x][new_y] = 1
-            
-
+# 적록색약 X
 cnt = 0  
 queue = deque()
 visited = [[0] * n for _ in range(n)]
@@ -32,8 +31,9 @@ for i in range(n):
         if (visited[i][j] == 0):
             cnt += 1
             bfs(i,j)
-two_cnt = cnt # 적록색약 X
+two_cnt = cnt
 
+# 적록색약 O
 for i in range(n):
     for j in range(n):
         if (painting[i][j] == 'G'):
@@ -46,5 +46,5 @@ for i in range(n):
         if (visited[i][j] == 0):
             cnt += 1
             bfs(i,j)
-three_cnt = cnt # 적록색약 O
+three_cnt = cnt 
 print(two_cnt, three_cnt)
