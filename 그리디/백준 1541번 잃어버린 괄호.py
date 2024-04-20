@@ -4,46 +4,18 @@ import sys
 input = sys.stdin.readline
 
 equation = input().rstrip()
-nums = []
-ops = []
-
-n = 0
-num = ""
-while (n < len(equation)):
-    if (equation[n] == '-' or equation[n] == '+'):
-        nums.append(int(num))
-        ops.append(equation[n])
-        num = ""
-    else:
-        num += equation[n]
-    if (n == len(equation)-1):
-        nums.append(int(num))
-    n += 1
+parts = equation.split('-')
 
 result = 0
-bracket = 0
-bopen = 0
-for i, num in enumerate(nums):
-    if (i == 0):
-        result += num
-        continue
-    if (ops[i-1] == '-'):
-        if (not bopen):
-            bopen = 1
-            bracket += num
-        else:
-            #bopen = 0
-            result -= bracket
-            #bopen = 1
-            bracket = 0
-            bracket += num
-    elif (ops[i-1] == '+'):
-        if (not bopen):
-            result += num
-        else:
-            bracket += num
-    if (i == len(nums)-1):
-        if (bopen):
-            result -= bracket
-
+nums = []
+for part in parts:
+    sum = 0
+    for p in part.split('+'):
+        sum += int(p)
+    nums.append(sum)
+    
+result += nums[0]
+for i in range(1, len(nums)):
+    result -= nums[i]
+        
 print(result)
