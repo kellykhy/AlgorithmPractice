@@ -46,8 +46,9 @@ for lifetime in flower:
     if (right_greater(end[0], end[1], max_end[0], max_end[1], 0)):
         result += 1
         break
-
-if right_greater(max_end[0], max_end[1], end[0], end[1], 1) or flag:  # right_greater -> 11월 30일까지 피어있는 꽃이 없는 경우 체크 (예외2)
+    
+# right_greater -> 11월 30일까지 피어있는 꽃이 없는 경우 체크 (예외2)
+if right_greater(max_end[0], max_end[1], end[0], end[1], 1) or flag:
     print(0) 
 else: 
     print(result)
