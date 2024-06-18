@@ -7,7 +7,7 @@ n = int(input())
 passengers = [0] + list(map(int, input().split()))
 m = int(input())
 
-psum = [] # 0, 35, 75, 125, 135, 165, 210, 270
+psum = [] # 누적합 ex. [0, 35, 75, 125, 135, 165, 210, 270]
 summation = 0
 for p in passengers:
     summation += p
