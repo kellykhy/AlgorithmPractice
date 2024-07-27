@@ -6,46 +6,43 @@ input = sys.stdin.readline
 
 n, m, p = map(int, input().split())
 S = [0] + list(map(int, input().split()))
-queue = [deque() for _ in range(p+1)]
+queues = [deque() for _ in range(p+1)]
 dx = [0, 1, 0, -1]
 dy = [1, 0, -1, 0]
 board = []
-distance = [[0 for _ in range(m)] for _ in range(n)]
-for i in range(n):
-    row_list = []
-    row = input()
-    for j in range(m):
-       row_list.append(row[j])
-       if ('1' <= row[j] <= '9'):
-           queue[int(row[j])].append((i,j,0))
-    board.append(row_list)
+result = [0 for _ in range(p+1)]
 
-queue_status = [0] + [0 for _ in range(p)] # 큐가 비면 1
+for i in range(n):
+    row = []
+    for j, elem in enumerate(input()):
+        row.append(elem)
+        if ('1' <= elem <= '9'):
+           queues[int(elem)].append((i,j,0))
+           result[int(elem)] += 1
+    board.append(row)
+
+is_continue = 1
 round = 0
-while (sum(queue_status) < p):
+while (is_continue):
     round += 1
+    is_continue = 0
     for player in range(1, p+1):
         s = round * S[player] # 1 * 2 = 2
-        while(queue[player]):
-            topx, topy, topd = queue[player][0]
-            if (topd == s):
+        queue = queues[player]
+        while (queue):
+            if (queue[0][2] == s):
                 break
-            x, y, d = queue[player].popleft()
+            x, y, d = queue.popleft()
             for i in range(4):
                 nx, ny, nd = x + dx[i], y + dy[i], d + 1
                 if (nx < 0 or nx >= n or ny < 0 or ny >= m):
                     continue
                 if (board[nx][ny] != '.'):
                     continue
-                board[nx][ny] = board[x][y]
-                queue[player].append((nx, ny, nd))
-        if not queue[player]:
-            queue_status[player] = 1
-
-result = [0 for _ in range(p)]
-for i in range(n):
-    for j in range(m):
-        if ('1' <= board[i][j] <= '9'):
-            result[int(board[i][j])-1] += 1
+                board[nx][ny] = str(player)
+                result[player] += 1
+                queue.append((nx, ny, nd))
+        if queue:
+            is_continue = 1
             
-print(' '.join(map(str, result)))
+print(' '.join(map(str, result[1:])))
