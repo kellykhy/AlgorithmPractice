@@ -30,7 +30,7 @@ while (is_continue):
         s = round * S[player] # 1 * 2 = 2
         queue = queues[player]
         while (queue):
-            if (queue[0][2] == s):
+            if (queue[0][2] == s): # player의 큐의 가장 위쪽(top) 원소의 distance가 s이면
                 break
             x, y, d = queue.popleft()
             for i in range(4):
@@ -40,9 +40,9 @@ while (is_continue):
                 if (board[nx][ny] != '.'):
                     continue
                 board[nx][ny] = str(player)
-                result[player] += 1
                 queue.append((nx, ny, nd))
+                result[player] += 1
         if queue:
             is_continue = 1
             
-print(' '.join(map(str, result[1:])))
+print(*result[1:])
