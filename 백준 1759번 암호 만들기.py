@@ -1,7 +1,6 @@
 # 백준 1759번 암호 만들기
 
 import sys
-from copy import deepcopy
 
 input = sys.stdin.readline
 
@@ -25,4 +24,4 @@ def backtracking(k, start):
         backtracking(k+1, i+1)
         result.pop()
         
-backtracking(0)
+backtracking(0, 0)
