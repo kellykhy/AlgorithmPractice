@@ -4,14 +4,13 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-pattern = input().rstrip()
+pattern = input().rstrip().split('*')
 files = []
 for _ in range(n):
     files.append(input().rstrip())
 
-tmp = list(pattern.split('*'))
-before = tmp[0]
-after = tmp[1]
+before = pattern[0]
+after = pattern[1]
 
 for file in files:
     flag = 0
