@@ -1,5 +1,5 @@
-# 백준 14502번 연구소 (python3 시간초과, pypy 통과)
-
+# 백준 14502번 연구소
+# itertools = combinations 대신 백트래킹으로 비슷하게 구현함
 import sys
 from collections import deque
 input = sys.stdin.readline
@@ -34,18 +34,18 @@ def bfs():
             visited[nx][ny] = 1
             cnt += 1
     min_cnt = min(cnt, min_cnt)
-            
-def wall(k):
+
+def wall(k, r):
     if k == 3:
         bfs()
         return
-    for i in range(n):
+    for i in range(r, n):
         for j in range(m):
             if graph[i][j]:
                 continue
             graph[i][j] = 1
-            wall(k+1)
+            wall(k+1, i)
             graph[i][j] = 0
             
-wall(0)
+wall(0, 0)
 print(vacant - min_cnt - 3)
