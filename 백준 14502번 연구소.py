@@ -1,4 +1,5 @@
 # 백준 14502번 연구소
+
 # itertools = combinations 대신 백트래킹으로 비슷하게 구현함
 import sys
 from collections import deque
