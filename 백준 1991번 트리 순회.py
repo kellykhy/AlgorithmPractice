@@ -10,32 +10,32 @@ for _ in range(n):
     graph[ord(tmp[0]) - ord('A')] += [tmp[1], tmp[2]]
 
 # 전위 순회 (m->l->r)
-def before(v):
+def preorder(v):
     print(v, end = '')
     l, r = graph[ord(v)-ord('A')]
     if l != '.':
-        before(l)
+        preorder(l)
     if r != '.':
-        before(r)
+        preorder(r)
 # 중위 순회
-def middle(v):
+def inorder(v):
     l, r = graph[ord(v)-ord('A')]
     if l != '.':
-        middle(l)
+        inorder(l)
     print(v, end = '')
     if r != '.':
-        middle(r)
+        inorder(r)
 # 후위 순위
-def after(v):
+def postorder(v):
     l, r = graph[ord(v)-ord('A')]
     if l != '.':
-        after(l)
+        postorder(l)
     if r != '.':
-        after(r)
+        postorder(r)
     print(v, end = '')
 
-before('A')
+preorder('A')
 print()
-middle('A')
+inorder('A')
 print()
-after('A')
+postorder('A')
