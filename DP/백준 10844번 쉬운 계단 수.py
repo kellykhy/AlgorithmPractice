@@ -18,6 +18,6 @@ for i in range(1, n+1):
             tmp[j] = memo[8]
         else:
             tmp[j] = (memo[j-1] + memo[j+1])
-    memo = tmp[:]
+    memo = tmp
     
 print(sum(memo)%1000000000)
