@@ -4,7 +4,7 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-def permutation(k, prev, n): # 방문한 더러운 칸의 수, 직전 위치, 더러운 칸 총
+def permutation(k, prev, n): # 방문한 더러운 칸의 수, 직전 위치, 더러운 칸 총 개수
     global move, result
     if move >= result:
         return
@@ -20,10 +20,10 @@ def permutation(k, prev, n): # 방문한 더러운 칸의 수, 직전 위치, �
         move -= distance[prev][i]
         visited[i] = 0
         
-def bfs(room, dirty): # 시작점과 더러운 칸들간의 거리(distance) 반환
+def bfs(room, dirty): # 더러운 칸들(시작위치 포함)간의 거리(distance) 반환
     h, w = len(room), len(room[0])
     
-    distance = [[-1 for _ in range(len(dirty))] for _ in range(len(dirty))] # 더러운 칸들 간의 거리
+    distance = [[-1 for _ in range(len(dirty))] for _ in range(len(dirty))] # 더러운 칸들(시작위치 포함) 간의 거리
     dx, dy = [0, 1, 0, -1], [1, 0, -1, 0]
 
     for i in range(0, len(dirty)):
@@ -53,7 +53,7 @@ while 1:
     if w == 0: break
     
     room = [] # 방의 구조
-    dirty = [] # 더러운 칸들의 위치 정보
+    dirty = [] # 더러운 칸들(시작위치 포함)의 위치 정보
     begin = (0,0)
     n = 0
     tmp = []
@@ -73,10 +73,10 @@ while 1:
     dirty.append(begin)
     dirty += tmp
         
-    # 1. 더러운 칸들간의 거리
+    # 1. 더러운 칸들(시작위치 포함)간의 거리
     distance = bfs(room, dirty)
     
-    # 2. 더러운 칸들의 순열 (방문 순서)
+    # 2. 더러운 칸들(시작위치 포함)의 순열(방문 순서) -> 최소 이동 횟수 구하기
     visited = [0 for _ in range(n+1)]
     move = 0
     result = 401
