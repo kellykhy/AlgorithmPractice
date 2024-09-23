@@ -1,14 +1,18 @@
 # 백준 15903번 카드 합체 놀이
 
 import sys
+import heapq
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-A = list(map(int, input().split()))
+heap = list(map(int, input().split()))
 
+heapq.heapify(heap) # O(n)
 for i in range(m):
-    A.sort()
-    n = A[0] + A[1]
-    A[0] = n
-    A[1] = n
-print(sum(A))
+    v1 = heapq.heappop(heap) # O(logn)
+    v2 = heapq.heappop(heap) # O(logn)
+    
+    heapq.heappush(heap, v1+v2) # O(logn)
+    heapq.heappush(heap, v1+v2) # O(logn)
+    
+print(sum(heap))
