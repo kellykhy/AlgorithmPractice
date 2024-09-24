@@ -5,8 +5,8 @@ import heapq
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-groups = []
-heap = []
+groups = [] # 학급 별 학생들의 능력치 (n개의 학급, 각 학급 m명의 학생)
+heap = [] # n명읟 대표 선수들의 (능력치, 학급)
 max_val = 0
 for i in range(n):
     group = list(map(int, input().split()))
