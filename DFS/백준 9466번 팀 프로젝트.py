@@ -23,7 +23,7 @@ for _ in range(T):
     vis = [0 for _ in range(N+1)]
     cnt = N
     for n in range(1, N+1):
-        if vis[n] : continue
-        seq = [0]
-        dfs(n)
+        if not vis[n]:
+            seq = [0]
+            dfs(n)
     print(cnt)
