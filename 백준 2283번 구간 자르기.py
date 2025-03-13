@@ -5,15 +5,18 @@ input = sys.stdin.readline
 
 max_value = 1000000
 N, K = map(int, input().split())
-arr = [0] * (max_value+2) # 0 ~ 1000001
 
+## 누적합 구하는 부분 (중요)
+arr = [0] * (max_value+2) # 0 ~ 1000001
 for _ in range(N):
     s, e = map(int, input().split())
     arr[s+1] += 1
     arr[e+1] -= 1
+    
 for i in range(1,1000002):
     arr[i] += arr[i-1]
-  
+
+##
 s, e = 0, 0
 flag = False
 value = 0
