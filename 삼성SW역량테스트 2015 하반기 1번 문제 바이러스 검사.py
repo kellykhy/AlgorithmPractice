@@ -11,7 +11,7 @@ total = 0
 for i in range(n):
     res = 1
     if customers[i] >= ldr:
-        customers[i] = customers[i] - ldr
+        customers[i] -= ldr
         res += customers[i] // mbr + 1 if customers[i] % mbr else customers[i] // mbr
 
     total += res
