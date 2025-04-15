@@ -23,6 +23,7 @@ def check(i, j, s):
                 return 0
     return 1
     
+# 90도 회전전
 def rotate(s):
     rot = [[0 for _ in range(len(s))] for _ in range(len(s[0]))]
     for i in range(len(s)):
@@ -30,12 +31,14 @@ def rotate(s):
             rot[j][len(s)-i-1] = s[i][j]
     return rot
 
+# 노트북의 (i,j) 위치에 스티커 붙이기
 def attach(s, i, j):
     for si in range(len(s)):
         for sj in range(len(s[0])):
             if s[si][sj]:
                 notebook[i+si][j+sj] = 1
                 
+# 노트북 위의 스티커 영역 세기              
 def count():
     result = 0
     for i in range(N):
