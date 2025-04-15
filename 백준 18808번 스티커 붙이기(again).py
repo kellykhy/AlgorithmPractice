@@ -1,78 +1,65 @@
-# 백준 18808번 스티커 붙이기
+# 백준 18808번 스티커 붙이기 (again)
 
 import sys
-from collections import deque
 input = sys.stdin.readline
 
-def rotate(sticker):
-    R, C = len(sticker), len(sticker[0])
-    rotation = [[0 for _ in range(R)] for _ in range(C)]
-    for i in range(R):
-        for j in range(C):
-            rotation[j][R-i-1] = sticker[i][j]
-    return rotation
+# input
+N, M, K = map(int, input().split())
+notebook = [[0 for _ in range(M)] for _ in range(N)]
+sticker = []
+for _ in range(K):
+    s = []
+    SN, SM = map(int, input().split())
+    for _ in range(SN):
+        s.append(list(map(int, input().split())))
+    sticker.append(s)
+result = 0
 
-def attach(sticker):
-    global board
-    R, C = len(sticker), len(sticker[0])
+# 노트북의 (i,j) 위치에 스티커를 붙일 수 있는가
+def check(i, j, s):
+    for si in range(len(s)):
+        for sj in range(len(s[0])):
+            if s[si][sj] and notebook[i+si][j+sj]:
+                return 0
+    return 1
+    
+def rotate(s):
+    rot = [[0 for _ in range(len(s))] for _ in range(len(s[0]))]
+    for i in range(len(s)):
+        for j in range(len(s[0])):
+            rot[j][len(s)-i-1] = s[i][j]
+    return rot
 
-    upperleft = (0,0)
-    for j in range(C):
-        if sticker[0][j]:
-            upperleft = (0, j)
-            break
+def attach(s, i, j):
+    for si in range(len(s)):
+        for sj in range(len(s[0])):
+            if s[si][sj]:
+                notebook[i+si][j+sj] = 1
+                
+def count():
+    result = 0
     for i in range(N):
         for j in range(M):
-            cnt = 0
-            new_board = [board[x][:] for x in range(N)]
-            if board[i][j]: continue
-            visited = [[0 for _ in range(C)] for _ in range(R)]
-            queue = deque()
-            
-            si, sj = upperleft
-            visited[si][sj] = 1
-            queue.append((si, sj))
-            new_board[i][j] = 1
-            cnt += 1
-            flag = 0
-            while queue:
-                si, sj = queue.popleft()
-                for di, dj in [(0,1), (1,0), (0,-1), (-1,0)]:
-                    nsi, nsj = si + di, sj + dj
-                    if not (0 <= nsi < R and 0 <= nsj < C) or visited[nsi][nsj]: continue
-                    if not sticker[nsi][nsj]: continue
-                    visited[nsi][nsj] = 1
-                    queue.append((nsi, nsj))
-                    ni, nj = i+nsi-upperleft[0], j+nsj-upperleft[1]
-                    if not (0 <= ni < N and 0 <= nj < M) or new_board[ni][nj]: 
-                        flag = 1
-                        break
-                    new_board[ni][nj] = 1
-                    cnt += 1
-                if flag: 
-                    break
-            if not flag:
-                board = new_board
-                return cnt
-    return 0
-
-
-N, M, K = map(int, input().split()) # 노트북 크기 : N x M, 스티커 개수 : K
-result = 0
-board = [[0 for _ in range(M)] for _ in range(N)]
-for _ in range(K):
-    # 스티커 정보
-    R, C = map(int, input().split())
-    sticker = [] # 스티커의 모눈종이
-    for _ in range(R):
-        sticker.append(list(map(int, input().split())))
-    # 스티커 붙이기
-    n = attach(sticker)
-    for _ in range(3):
-        if not n:
-            sticker = rotate(sticker)
-            n = attach(sticker)
-        else:
-            break
-    result += n
+            if notebook[i][j] == 1:
+                result += 1
+    return result
+     
+def round(k):
+    global result
+    if k == K:
+        result = count()
+        return
+    s = sticker[k]
+    for r in range(4):
+        for i in range(N-len(s)+1):
+            for j in range(M-len(s[0])+1):
+                if check(i, j, s):
+                    attach(s, i, j)
+                    round(k+1)
+                    return
+        if r == 3: break
+        s = rotate(s)
+    round(k+1)
+    
+round(0)
 print(result)
