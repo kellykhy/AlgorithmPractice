@@ -17,6 +17,7 @@ for m in range(1, N+1):
     for a in range(1, N+1):
         for b in range(1, N+1):
             board[a][b] = min(board[a][b], max(board[a][m], board[m][b]))
+            
 for _ in range(T):
     s, e = map(int, input().split())
     if board[s][e] != INF:
