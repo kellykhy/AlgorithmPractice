@@ -52,7 +52,6 @@ def bfs():
             elif forest[nx][ny] == '.':
                 queue.append((nx, ny, c+1))
                 visited[nx][ny] = visited[x][y] + 1
-                
     return 0
 
 m = bfs()
@@ -60,5 +59,3 @@ if m == 0:
     print('KAKTUS')
 else:
     print(m)
-                
-        
